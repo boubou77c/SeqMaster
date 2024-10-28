@@ -19,7 +19,7 @@ In the form of : *Un + x*
 
 You can choose between a __custom__ range and an __infinite__ range. To enable the infinite range set both *Minimum* and *Maximum* range to 0
 
-⚠ If you have a large limited range, it is better to use the infinite range (optimization reasons)
+⚠️ If you have a large limited range, it is better to use the infinite range (optimization reasons)
 
 3. ### Export Picture
 
