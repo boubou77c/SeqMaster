@@ -45,7 +45,7 @@ The graph can be exported as a PNG or JPEG image.
 
 ### Main Menu :
 
-![App Screenshot](Picture/seqMMainmenu.png)
+![App Screenshot](Picture/seqM Main menu.png)
 
 # Version 1.0
 
