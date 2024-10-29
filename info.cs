@@ -1,5 +1,5 @@
 Project: SeqMaster
-Version: 1.0.1
+Version: 1.0.2
 Description: Application designed to calculate and view in a plot mathematical sequences
 Author: Boubou
 Nationality : France
