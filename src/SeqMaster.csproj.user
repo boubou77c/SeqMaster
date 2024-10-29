@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\Boubou\Desktop\SeqMaster\SeqMaster\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AboutAppWindow\AboutAppWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AboutSequenceWindow\AboutSeqWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="GraphMenuWindow\GraphMenuWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AboutAppWindow\AboutAppWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AboutSequenceWindow\AboutSeqWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="GraphMenuWindow\GraphMenuWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="SeqMaster.CustomControl.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="NumericUpDownControl">
+    <StackPanel Orientation="Horizontal">
+        <TextBox Text="{Binding Value, ElementName=NumericUpDownControl, Mode=TwoWay}" 
+                 Width="50" VerticalAlignment="Center" 
+                 Margin="5,0" TextAlignment="Center" Height="19"/>
+        <Button Content="▲" Click="IncreaseValue" Background="#BFC7CD" Width="14" Height="30"/>
+        <Button Content="▼" Click="DecreaseValue" Background="#BFC7CD" Width="14" Height="30"/>
+    </StackPanel>
+</UserControl>

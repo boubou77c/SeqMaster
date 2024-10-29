@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeqMaster", "SeqMaster.csproj", "{8595587B-8B4E-4893-8D2C-020FBF0F7011}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8595587B-8B4E-4893-8D2C-020FBF0F7011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8595587B-8B4E-4893-8D2C-020FBF0F7011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8595587B-8B4E-4893-8D2C-020FBF0F7011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8595587B-8B4E-4893-8D2C-020FBF0F7011}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {607D5E77-15D3-4625-A518-F22B55A8E5D1}
+	EndGlobalSection
+EndGlobal

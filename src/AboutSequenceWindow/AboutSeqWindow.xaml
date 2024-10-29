@@ -1,0 +1,72 @@
+﻿<Window x:Class="SeqMaster.AboutWindow.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About Sequences" Height="624" Width="500" 
+        Background="#f8f8f8" 
+        WindowStartupLocation="CenterScreen"
+        BorderBrush="#cccccc" 
+        BorderThickness="2">
+
+    <Border Background="White" Margin="10,10,10,10" CornerRadius="8" BorderBrush="#dddddd" BorderThickness="1">
+        <StackPanel Margin="20,20,20,19">
+            <TextBlock Text="About Explicit and Recursive Sequences" 
+                       FontSize="20" FontWeight="Bold" 
+                       TextAlignment="Center" Margin="0,0,0,20"
+                       Foreground="#333333"/>
+
+            <!-- Explicit Sequence Section -->
+            <TextBlock Text="Explicit Sequence" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#0056b3"/>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" 
+                       Foreground="#555555">
+                An explicit sequence allows you to calculate any term Uₙ directly using the index n. 
+                In an explicit formula, you can use operators like *, -, /, + to calculate Uₙ.
+                For example, if Uₙ = 2 + 3 * n, you can find each term directly from n.
+            </TextBlock>
+            <TextBlock Text="Example: Uₙ = 2 + 3 * n" 
+                       FontStyle="Italic" Margin="0,0,0,20"
+                       Foreground="#888888"/>
+
+            <!-- Recursive Sequence Section -->
+            <TextBlock Text="Recursive Sequence" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#0056b3"/>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" 
+                       Foreground="#555555">
+                A recursive sequence defines each term Uₙ based on previous terms, often using Uₙ₋₁, Uₙ₋₂, etc. To calculate Uₙ, start with an initial term U₀ and apply the formula recursively.
+            </TextBlock>
+            <TextBlock Text="Example: U₀ = 1, Uₙ = 2 * Uₙ₋₁" 
+                       FontStyle="Italic" Margin="0,0,0,20"
+                       Foreground="#888888"/>
+
+            <!-- Power and Square Root Functions Section -->
+            <TextBlock Text="Using Power and Square Root Functions" 
+                       FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#0056b3"/>
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" 
+                       Foreground="#555555">
+                To calculate powers and roots in formulas, use specific functions:
+                - Power: Use Pow(base, exponent) to raise a number to a power.
+                - Square Root: Use Sqrt(n) for the square root of n.
+            </TextBlock>
+            <TextBlock Text="Examples:" FontStyle="Italic" Margin="0,0,0,5" Foreground="#888888"/>
+            <TextBlock Text="• Uₙ = Pow(n, 2) to calculate n squared" Margin="0,0,0,5" Foreground="#555555"/>
+            <TextBlock Text="• Uₙ = Sqrt(n) to calculate the square root of n" Margin="0,0,0,15" Foreground="#555555"/>
+
+            <!-- Close Button -->
+            <Button Content="Close" Width="100" HorizontalAlignment="Center" 
+                    Click="CloseBtn_Click" 
+                    Margin="0" Padding="10" 
+                    Background="#0056b3" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    Cursor="Hand" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="1" RenderTransformOrigin="0.514,0.595">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#007ACC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Border>
+</Window>
