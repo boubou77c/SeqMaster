@@ -22,8 +22,7 @@ namespace SeqMaster.AboutAppWindow
         public AboutAppWin()
         {
             InitializeComponent();
-            MaxHeight = 530;
-            MaxWidth = 416;
+            
 
         }
 

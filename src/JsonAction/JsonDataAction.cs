@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using Microsoft.Win32;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace SeqMaster.JsonAction
 {
@@ -18,14 +18,14 @@ namespace SeqMaster.JsonAction
 
         public void SaveData(DataSaved data)
         {
-            string json = JsonConvert.SerializeObject(data);
 
             SaveFileDialog = new SaveFileDialog();
             SaveFileDialog.Filter = "json | *.json";
             if(SaveFileDialog.ShowDialog() == true)
             {
                 string filePath = SaveFileDialog.FileName;
-                File.WriteAllText(filePath, json);
+                string jsonString = JsonSerializer.Serialize(data);
+                File.WriteAllText(filePath, jsonString);
                 MessageBox.Show("File Saved successfully");
 
             }
@@ -43,10 +43,10 @@ namespace SeqMaster.JsonAction
                     string json = File.ReadAllText(filePath);
                     try
                     {
-                        return JsonConvert.DeserializeObject<DataSaved>(json);
+                        return JsonSerializer.Deserialize<DataSaved>(json);
 
                     }
-                    catch (Newtonsoft.Json.JsonReaderException) { }
+                    catch (Exception) { }
                 }
             }
             return null;
@@ -60,7 +60,7 @@ namespace SeqMaster.JsonAction
             if (File.Exists(settingsPath))
             {
                 string json = File.ReadAllText(settingsPath);
-                return JsonConvert.DeserializeObject<DataSaved>(json);
+                return JsonSerializer.Deserialize<DataSaved>(json);
             }
 
             return null;
@@ -68,7 +68,7 @@ namespace SeqMaster.JsonAction
 
         public void SaveSettings(DataSaved data)
         {
-            string json = JsonConvert.SerializeObject(data);
+            string json = JsonSerializer.Serialize(data);
 
             string settingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.json"); // Dynamic path
             File.WriteAllText(settingsPath, json);

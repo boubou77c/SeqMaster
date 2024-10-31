@@ -1,7 +1,9 @@
 ﻿using OxyPlot;
+using SeqMaster.AnalysisFolder;
 using SeqMaster.File_Menu_Action;
 using SeqMaster.GraphMenuWindow;
 using SeqMaster.JsonAction;
+using SeqMaster.UpdatesMenu;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -91,6 +93,7 @@ namespace SeqMaster
             
             plotGeneration.InitializePlot(formula,expliciteSeq:expliciteSequence,initialTermRec, resultLB,isInfinite,minRangeSeq,maxRangeSeq);
 
+            AnalysisSeq();
 
         }
 
@@ -135,23 +138,24 @@ namespace SeqMaster
         private void OnKeyDown(object sender,KeyEventArgs e)
         {
             base.OnKeyDown(e);
+           
+            // Check if the key CTRL is pressed
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftShift)) 
+
+                if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftShift))
                 {
                     Load_Json();
                     e.Handled = true;
                 }
-                else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftShift)) 
+                else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftShift))
                 {
                     fileMenuAction.ExportDataToCSV(plotGeneration.GetPoints());
                     e.Handled = true;
                 }
-            }
-            // Check if the key CTRL is pressed
-            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                if (e.Key == Key.R)
+                else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.LeftShift)) { AnalysesSeqAction(); }
+
+                else if (e.Key == Key.R)
                 {
                     plotGeneration.ResetZoom();
                     e.Handled = true;
@@ -168,7 +172,7 @@ namespace SeqMaster
                     e.Handled = true;
                 }
 
-                if (e.Key == Key.N) // New Plot
+                else if (e.Key == Key.N) // New Plot
                 {
                     ResetPlot();
                     e.Handled = true;
@@ -201,10 +205,7 @@ namespace SeqMaster
 
         private void SaveImagePlot_Click(object sender, EventArgs e) { fileMenuAction.SavePlotAsImage(); }
 
-        private void NewFile_Click(object sender ,EventArgs e) 
-        {
-            ResetPlot();
-        }
+        private void NewFile_Click(object sender ,EventArgs e) {ResetPlot();}
 
         private void SaveCSV_Click(object sender, EventArgs e) { fileMenuAction.ExportDataToCSV(plotGeneration.GetPoints()); }
 
@@ -214,11 +215,7 @@ namespace SeqMaster
 
         private void Save_Click(object sender, EventArgs e)  { Save(); }
 
-        private void Load_Click(object sender ,EventArgs e)
-        {
-            Load_Json();
-        }
-        private void CalculateLimit_Click(object sender, EventArgs e) { }
+        private void Load_Click(object sender ,EventArgs e) { Load_Json(); }
         private void AboutSeq_Click(object sender ,EventArgs e)
         {
             aboutSequenceWindow = new AboutWindow.AboutWindow();
@@ -231,7 +228,44 @@ namespace SeqMaster
             aboutAppWindow.ShowDialog();
         }
 
+        private void UpdatesWin_Click(object sender, EventArgs e) {  UpdatesWindow updatesWindow = new UpdatesWindow();  updatesWindow.ShowDialog(); }
 
+        private void AnalysisSeq_Click(object sender , EventArgs e) 
+        {
+            AnalysesSeqAction();
+        }
+        private void AnalysesSeqAction()
+        {
+            if (this.infoGrid.Visibility == Visibility.Visible)
+            {
+                this.InfoSeqRow.Height = new GridLength(0);
+                this.infoGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.InfoSeqRow.Height = new GridLength(116);
+                this.infoGrid.Visibility = Visibility.Visible;
+                bool isExplicit = RBexpliciteSeq.IsChecked ?? false;
+                string firstTerm = string.IsNullOrEmpty(this.firstTermsRC.Text) ? "0" : this.firstTermsRC.Text;
+                AnalysisSequence analysisSequence = new AnalysisSequence(this.seqInput.Text, formulaTB, monotocityTB, firstTerm, isExplicit);
+                analysisSequence.AnalysisSeq();
+            }
+            AnalysisSeq();
+        }
+        private void AnalysisSeq()
+        {
+            if (this.infoGrid.Visibility == Visibility.Visible)
+            {
+                this.InfoSeqRow.Height = new GridLength(116);
+                this.infoGrid.Visibility = Visibility.Visible;
+                bool isExplicit = RBexpliciteSeq.IsChecked ?? false;
+                string firstTerm = string.IsNullOrEmpty(this.firstTermsRC.Text) ? "0" : this.firstTermsRC.Text;
+
+                AnalysisSequence analysisSequence = new AnalysisSequence(this.seqInput.Text, formulaTB, monotocityTB, firstTerm, isExplicit);
+                analysisSequence.AnalysisSeq();
+            }
+            
+        }
         private void ResetPlot()
         {
             seqInput.Text = "";

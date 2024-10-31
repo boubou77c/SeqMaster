@@ -9,7 +9,7 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Icons\IcoSeqMaster.ico</ApplicationIcon>
+    <ApplicationIcon>Icons\seqMath-icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,12 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Icons\IcoSeqMaster.ico" />
+    <Content Include="Icons\seqMath-icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CoreCLR-NCalc" Version="3.1.253" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
     <None Update="libs\*.dll">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

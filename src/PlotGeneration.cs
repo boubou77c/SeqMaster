@@ -23,7 +23,7 @@ namespace SeqMaster
         
         private string formula;
 
-        private bool isExplicite;
+        private bool isExplicite { set; get; } 
 
         private Label r;
         // For Recursive formula 
@@ -41,11 +41,14 @@ namespace SeqMaster
         private string XTitle = "X";
         private string YTitle = "Y";
 
+
         public PlotGeneration(PlotView plotView)
         {
             this.plotView = plotView;
             InitializePlot("New Graph", "X", "Y");
         }
+
+        
 
         public void CustomGraph(string title,double thinkness,OxyColor color,string yTitle,string xTitle)
         {
@@ -133,6 +136,7 @@ namespace SeqMaster
                 MajorGridlineStyle = LineStyle.Solid,    
                 MinorGridlineStyle = LineStyle.Dot,      
                 MinorGridlineColor = OxyColors.LightGray,
+
                 MaximumRange = 1000,
                 MinimumRange = 1,
                 Minimum = 0,
@@ -145,6 +149,7 @@ namespace SeqMaster
             {
                 Position = AxisPosition.Left,
                 Title = this.YTitle,
+
                 MaximumRange = 1000,
                 MinimumRange = 1,
                 Minimum = 0,
@@ -171,20 +176,18 @@ namespace SeqMaster
             {
                 if (formula.Length > 0)
                 {
+                    CalculateSeq(0, 20);
+                    // Calculate again when axis changes
                     GetXaxis.AxisChanged += Axis_Changed;
                 }
                 
             }
+
+            // Calculate the sequence with user range
             else
             {
-                if (isExplicite)
-                {
-                    ExpliciteSeq(minRange, maxRange);
-                }
-                else
-                {
-                    RecursiveSeq(minRange, maxRange);
-                }
+                CalculateSeq(minRange, maxRange);
+
             }
         }
 
@@ -215,12 +218,19 @@ namespace SeqMaster
         {
              List<DataPoint> points = new List<DataPoint>();
 
-
-            foreach (var point in lineSeries.Points)
+            try 
             {
-                points.Add(point);
+                foreach (var point in lineSeries.Points)
+                {
+                    points.Add(point);
+                }
+                return points;
+
+            }catch (Exception)
+            {
+                return points;
             }
-            return points;
+
         }
 
 
@@ -234,17 +244,13 @@ namespace SeqMaster
                 double maxX = xAxis.ActualMaximum;
 
 
-                if (isExplicite)
-                {
-                    ExpliciteSeq(minX, maxX);
-                }
-                else { RecursiveSeq(minX, maxX); }
+                CalculateSeq(minX, maxX);
             }
         }
 
         
         
-        private void ExpliciteSeq(double minX, double maxX)
+        private void CalculateSeq(double minX, double maxX)
         {
             lineSeries.Points.Clear();
 
@@ -252,6 +258,7 @@ namespace SeqMaster
             {
                 NCalc.Expression expression = new NCalc.Expression(formula);
 
+                double lastValue = this.initialTerm;
 
                 double rangeMin = minX;
                 double rangeMax = maxX;
@@ -268,11 +275,32 @@ namespace SeqMaster
                     step = Math.Max(1, visibleRange / 500);
 
                 }
+                if (!isExplicite)
+                {
+                    lineSeries.Points.Add(new DataPoint(rangeMin, this.initialTerm));
+                    rangeMin = minRange + 1;
+                }
 
                 for (double term = rangeMin; term <= rangeMax; term += step)
                 {
-                    
-                    expression.Parameters["n"] = term;
+
+                    term = Math.Round(term, 1);
+
+                    // Explicite Seq
+                    if (isExplicite)
+                    {
+                        expression.Parameters["n"] = term;
+
+                    }
+                    // Recursive Seq
+                    else
+                    {
+
+                        expression.Parameters["Un"] = lastValue;
+                        expression.Parameters["n"] = term;
+
+                    }
+
                     double result = Convert.ToDouble(expression.Evaluate());
 
                     if(double.IsNaN(result))
@@ -280,13 +308,17 @@ namespace SeqMaster
                         expression.Parameters["n"] = (int)term;
                         result = Convert.ToDouble(expression.Evaluate());
                     }
-                    //MessageBox.Show(Convert.ToString(result));
-                    //this.r.Content = ($"term: {term}, result: {result}\n minX {minX} maxX: {maxX}");
+
+                  
 
                     this.r.Content = ($"Minimum X {minX} \nMaximum X: {maxX}");
 
+                    lastValue = result;
+
                     lineSeries.Points.Add(new DataPoint(term, result));
                     //MessageBox.Show(Convert.ToString(result));
+
+
                 }
 
             }
@@ -296,7 +328,7 @@ namespace SeqMaster
             plotView.InvalidatePlot(true);
 
         }
-       
+
 
         private void RecursiveSeq(double minX, double maxX)
         {
@@ -322,7 +354,7 @@ namespace SeqMaster
 
                 lineSeries.Points.Add(new DataPoint(0, this.initialTerm));
 
-                for (double i = 1; i < rangeMax; i+=step)
+                for (double i = 1; i < rangeMax; i += step)
                 {
                     i = Math.Round(i, 1);
 
@@ -347,11 +379,13 @@ namespace SeqMaster
                 plotView.InvalidatePlot(true);
 
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
         }
 
-        
+
+
+
         public void ZoomIn()
         {
             foreach (var axis in plotView.Model.Axes)

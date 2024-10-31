@@ -8,7 +8,7 @@
 
         Title="SeqMaster" Height="625" Width="1218">
 
-    <Grid x:Name="MainGrid" Background="#F7F8FA     ">
+    <Grid x:Name="MainGrid" Background="#F7F8FA">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -43,14 +43,14 @@
 
             </MenuItem>
 
-            <MenuItem Header="Analysis (Soon)" Foreground="#5E636A">
-                <MenuItem Header="Show Statistics" />
-                <MenuItem Header="Calculate Limit" Click="CalculateLimit_Click"/>
+            <MenuItem Header="Analyses" Foreground="#5E636A">
+                <MenuItem Header="Show Analyses             Ctrl + Shift + A" Click="AnalysisSeq_Click" />
             </MenuItem>
 
             <MenuItem Header="About" Foreground="#5E636A" Height="23" >
                 <MenuItem Header="About Application" Click="AboutApp_Click"/>
                 <MenuItem Header="About Sequences" Click="AboutSeq_Click"/>
+                <MenuItem Header="Updates" Click="UpdatesWin_Click"/>
             </MenuItem>
         </Menu>
 
@@ -58,8 +58,13 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="755*"/>
+
+
             </Grid.ColumnDefinitions>
+
+
+
 
             <StackPanel x:Name="controlPanel" Margin="10,38,10,160">
                 <TextBlock Text="Sequence Type" Foreground="#FF44556D" FontSize="20" Margin="0,10,0,10" HorizontalAlignment="Center" Height="28" Width="136"/>
@@ -87,16 +92,43 @@
 
             </StackPanel>
 
-            <!-- Graph Area -->
-            <oxy:PlotView x:Name="plotView" Grid.Column="1" Margin="10,38,10,10" />
-            <oxy:PlotView HorizontalAlignment="Left" Margin="112,208,0,0" VerticalAlignment="Top"/>
+
+
             <Button x:Name="showPointsBtn" Background="#8FAAC2  " Content="Calculate" Foreground="Black" FontFamily="Calibri" Margin="40,454,40,0" RenderTransformOrigin="0.5,0.5" Height="33" VerticalAlignment="Top"/>
-            <Label x:Name="resultLB" Content="" Margin="25,503,25,23"/>
             <Label Content="@boubou" HorizontalAlignment="Left" Margin="10,0,0,10" Width="67" Height="26" VerticalAlignment="Bottom"/>
 
 
 
+            <Grid Grid.Column="1">
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="487*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition x:Name="InfoSeqRow" Height="0"/>
+                </Grid.RowDefinitions>
+
+
+                <oxy:PlotView x:Name="plotView" Margin="10,38,4,0" />
+                <oxy:PlotView HorizontalAlignment="Left" Margin="112,249,0,0" VerticalAlignment="Top" Height="0" Width="0"/>
+                <GridSplitter HorizontalAlignment="Stretch" Background="#FFBFE6FF" Margin="10,2,10,0" Grid.Row="1" />
+
+
+                <Grid x:Name="infoGrid" Visibility="Collapsed"  Margin="0,5,0,-120" Grid.Row="2" >
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="23" FontWeight="Bold" Text="Sequence Analysis" Foreground="#333333" Margin="10,1,0,0" HorizontalAlignment="Left" Width="198" Height="57" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="monotocityTB" FontSize="14" FontWeight="SemiBold" Text="Monotocity:" TextWrapping="Wrap" Foreground="#333333" Margin="245,45,372,0" Height="56" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="formulaTB" FontSize="14" FontWeight="SemiBold" Text="Formula:"  TextWrapping="Wrap" Foreground="#333333" Margin="10,45,728,0" Height="56" VerticalAlignment="Top"/>
+                    <Label x:Name="resultLB" Content="" Margin="688,23,10,0" Height="83" VerticalAlignment="Top" FontSize="16"/>
+
+                </Grid>
+
+                <!-- Splitter -->
+
+
+            </Grid>
 
 
 

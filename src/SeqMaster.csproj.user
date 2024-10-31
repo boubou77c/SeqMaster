@@ -18,6 +18,9 @@
     <Compile Update="GraphMenuWindow\GraphMenuWin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UpdatesMenu\UpdatesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AboutAppWindow\AboutAppWin.xaml">
@@ -30,6 +33,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UpdatesMenu\UpdatesWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

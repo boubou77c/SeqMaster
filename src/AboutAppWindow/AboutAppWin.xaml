@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="About the Application" Height="534" Width="416" 
         Background="#f8f8f8" 
+        MaxHeight="530"
+        MaxWidth="416"
         WindowStartupLocation="CenterScreen"
         BorderBrush="#cccccc" 
         BorderThickness="2">
-
+ 
+    
     <Border Background="White" Margin="10" CornerRadius="8" BorderBrush="#dddddd" BorderThickness="1">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Width="390">
             <StackPanel Margin="20">
@@ -45,7 +48,7 @@
                     Developed by Boubou. <LineBreak/>
                     Discord : .bou_bou_  <LineBreak/>
                     Github : https://github.com/boubou77c <LineBreak/>
-                    Version 1.0.2
+                    Version 1.2
                 </TextBlock>
 
                 <!-- Close Button with Style -->
