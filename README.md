@@ -2,7 +2,7 @@
 
 SeqMaster is an application  designed to calculate and visualize mathematical sequences using graphs.
 
-(No source code at the moment.)
+
 # 🚀 Features
 
 1. ### Calculate Explicit Sequences
