@@ -48,7 +48,7 @@ The graph can be exported as a PNG or JPEG image.
 
 ![App Screenshot](Picture/MainMenu.png)
 
-# Version 1.0
+# Version 1.2
 
 # 🙂 Help Me Improve
 
